@@ -85,6 +85,9 @@
                     Nombre de documento
                 </th>
                 <th scope="col" class="px-6 py-3">
+                    Nombre de Cliente
+                </th>
+                <th scope="col" class="px-6 py-3">
                     Rut
                 </th>
                 <th scope="col" class="px-6 py-3">
@@ -106,6 +109,9 @@
             *ngFor="let documento of documentos | paginate: { itemsPerPage: 10, currentPage: currentPage, totalItems: totalDocumentos }">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     {{documento.filenameDocument}}
+                </th>
+                <th scope="row" class="px-6 py-4 ">
+                    {{documento.nameClient}}
                 </th>
                 <th scope="row" class="px-6 py-4 ">
                     {{documento.rutClient}}

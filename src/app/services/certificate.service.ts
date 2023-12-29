@@ -32,9 +32,7 @@ export class CertificateService {
       }
     }).pipe(
       map((resp: any) => {
-        console.log('Dentro de map:', resp);
         if (/**resp.status === 'success' &&*/ resp.data.base64conglomerado) {
-          console.log('Respuesta del servicio:', resp);
           return resp.data.base64conglomerado;
         } else {
           console.error('Error en la respuesta del servicio:', resp);

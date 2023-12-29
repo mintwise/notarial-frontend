@@ -30,6 +30,7 @@ export class DocumentSignActionComponent implements OnInit{
     var id = this.route.snapshot.paramMap.get('id');
     if(id){
       this.getDocumentData(id);
+      this.id=id;
     }
   }
   firmarDocumento() { 
@@ -42,7 +43,7 @@ export class DocumentSignActionComponent implements OnInit{
     this.signService.firmarDocumento(this.idBody,body).subscribe(
       mensaje => {
         
-        if( mensaje = 'Documento agregado correctamente.'){
+        if( mensaje != ''){
           this.loading=!this.loading;
           this.mostrarModal('¡Firma Exitosa!',false);
           this.getDocumentData(this.id);

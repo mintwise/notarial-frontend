@@ -67,7 +67,6 @@ export class DocumentPolizaUploadComponent {
           this.mostrarModal('¡Documento Cargado!',false)
 
         }
-        console.log("Mensaje del servidor:", mensaje);
       },
       error => {
         console.error("Error al cargar el documento:", error)

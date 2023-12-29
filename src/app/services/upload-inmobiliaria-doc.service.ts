@@ -36,11 +36,9 @@ export class UploadInmobiliariaDoc {
       }
     }).pipe(
       map((resp: any) => {
-        console.log('Respuesta del servicio:', resp);
 
         if (resp.status === 'success' && resp.data.types && resp.data.types.Contrato) {
           // Manejar el caso cuando el tipo es Conglomerado
-          console.log('Es un Conglomerado. Datos del Conglomerado:', resp.data.types);
           return resp.data.types.Contrato;
         } else {
           console.log('Error en la respuesta del servicio:', resp);

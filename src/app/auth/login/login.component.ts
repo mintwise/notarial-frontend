@@ -27,15 +27,12 @@ export class LoginComponent implements OnInit{
     ) {}
 
     login(){
-      console.log('se apreto login')
       let body = {
         email: this.loginForm.get('email')?.value,
         password: this.loginForm.get('password')?.value,
       }
-      console.log(body)
       this.authService.login(body).subscribe(success => {
         if (success) {
-          console.log('Login exitoso');
           this.router.navigateByUrl('/documents')
         } else {
           console.error('Login fallido');

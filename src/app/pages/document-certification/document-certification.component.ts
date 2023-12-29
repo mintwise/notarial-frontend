@@ -32,12 +32,10 @@ export class DocumentCertificationComponent implements OnInit{
 
   search() {
     this.documentos = this.filterTableData();
-    console.log('Documentos filtrados:', this.documentos);
     // Puedes asignar los documentos filtrados a otra variable si es necesario
   }
   filterTableData() {
     const searchTerm = this.searchForm.get('rutClient')?.value.toLowerCase();
-    console.log(searchTerm)
     // Filtrar documentos basado en el rutClient
     if (searchTerm.trim() === '') {
       // Si el campo de búsqueda está vacío, mostrar todos los documentos

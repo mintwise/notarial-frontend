@@ -49,7 +49,6 @@ export class DocumentsComponent implements OnInit{
   }
   filterTableData() {
     const searchTerm = this.searchForm.get('rutClient')?.value.toLowerCase();
-    console.log(searchTerm)
     // Filtrar documentos basado en el rutClient
     if (searchTerm.trim() === '') {
       // Si el campo de búsqueda está vacío, mostrar todos los documentos
@@ -82,7 +81,6 @@ export class DocumentsComponent implements OnInit{
   // Nueva función para llamar a filterTableData()
   search() {
     this.documentos = this.filterTableData();
-    console.log('Documentos filtrados:', this.documentos);
     // Puedes asignar los documentos filtrados a otra variable si es necesario
   }
   obtenerDocumentos(){
@@ -104,7 +102,6 @@ filterDocumentsByDateRange(selectedFilter: string): any[] {
     // La lógica siguiente es un ejemplo básico, debes adaptarla según tus necesidades
 
     const currentDate = new Date();
-    console.log('Selected Filter:', selectedFilter);
     switch (selectedFilter) {
         case 'lastDay':
             return this.documentos.filter((doc:any) => this.isDateWithinRange(doc.createdAt, currentDate, -1));

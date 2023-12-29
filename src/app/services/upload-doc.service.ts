@@ -63,4 +63,21 @@ export class UploadDocService {
       })
     );
   }
+
+  eliminarDocumento(id:string){
+    return this.http.delete<any>(`${ base_url }/document/${id}`,{
+      headers: {
+        'Authorization': `Bearer ${this.token}`
+      }
+    }).pipe(
+      map((resp) => {
+        if (resp.status === 'success'){
+          return resp.message;
+        }else{
+          console.error('Error:', resp);
+          return null
+        }
+      })
+    );
+  }
 }

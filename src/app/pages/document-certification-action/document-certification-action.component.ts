@@ -165,7 +165,6 @@ export class DocumentCertificationActionComponent implements OnInit{
     .subscribe(
     (data) => {
       this.base64CongTemp = data;
-      console.log('b64',this.base64CongTemp)
     },
     (error) => {
       console.error('Error al obtener el conglomerado', error);
@@ -175,7 +174,6 @@ export class DocumentCertificationActionComponent implements OnInit{
   }
   descargarPdf(b64: string){
     let base64PDF=b64;
-    console.log('base64 dentro del metodo', base64PDF)
     // Decodifica el base64 y crea un Blob con el contenido
     const binaryPDF = atob(base64PDF);
     const arrayBuffer = new ArrayBuffer(binaryPDF.length);
