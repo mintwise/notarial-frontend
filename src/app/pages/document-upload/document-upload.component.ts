@@ -55,7 +55,7 @@ export class DocumentUploadComponent {
       nameResponsible: localStorage.getItem('nombre'),
       rutResponsible: localStorage.getItem('rut'),
       emailResponsible: localStorage.getItem('correo'),
-      nameClient: this.uploadForm.get('nombre')?.value,
+      nameClient: this.uploadForm.get('nombre_client')?.value,
       rutClient: this.uploadForm.get('rut')?.value,
       emailClient: this.uploadForm.get('email_client')?.value,
       filenameDocument: this.uploadForm.get('nombre_doc')?.value,
