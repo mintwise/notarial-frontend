@@ -126,4 +126,9 @@ isDateWithinRange(documentDate: Date, currentDate: Date, daysRange: number): boo
   idDoc(id:string){
     this.router.navigate(['/document-detail',id])
   }
+
+
+
 }
+
+

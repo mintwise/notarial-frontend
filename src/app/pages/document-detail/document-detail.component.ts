@@ -48,4 +48,31 @@ export class DocumentDetailComponent implements OnInit{
     });
   }
 
+
+  descargarPdf(b64: string, nombre: string){
+    let base64PDF=b64;
+    // Decodifica el base64 y crea un Blob con el contenido
+    const binaryPDF = atob(base64PDF);
+    const arrayBuffer = new ArrayBuffer(binaryPDF.length);
+    const uint8Array = new Uint8Array(arrayBuffer);
+  
+    for (let i = 0; i < binaryPDF.length; i++) {
+      uint8Array[i] = binaryPDF.charCodeAt(i);
+    }
+  
+    const blob = new Blob([uint8Array], { type: 'application/pdf' });
+  
+    // Crea un objeto URL para el Blob y abre una nueva ventana para descargar el PDF
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = nombre,'.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  
+    // Libera el objeto URL creado
+    URL.revokeObjectURL(url);
+  }
+
 }

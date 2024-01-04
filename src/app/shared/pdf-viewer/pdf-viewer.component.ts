@@ -8,5 +8,7 @@ import { Component, Input } from '@angular/core';
 
 export class PdfViewerComponent {
   @Input() pdfBase64: string = '';
+  @Input() minHeight: string = '';
+  @Input() height: string = '';
 
 }

@@ -1,4 +1,4 @@
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg bg-white p-4 m-4">
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg bg-white p-3 m-3">
   <nav class="flex mb-4" aria-label="Breadcrumb">
     <ol class="inline-flex items-center space-x-1 md:space-x-3">
       <li class="inline-flex items-center">
@@ -16,7 +16,6 @@
         <div>
             <!-- AQUÍ VA EL DROPDOWN MENU-->
         </div>
-        
         <form [formGroup]="searchForm" class="flex items-center">
           <label for="table-search" class="sr-only">Search</label>
           <div class="relative pr-4">
@@ -33,25 +32,25 @@
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 rounded-lg overflow-hidden border border-[#36494E] dark:border-gray-700">
         <thead class="text-xs text-white uppercase bg-[#36494E] dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-3 py-3">
                     Nombre de documento
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-3 py-3">
                     Nombre de Cliente
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-12 py-3">
                     Rut
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-10 py-3">
                     Fecha
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Tipo Documento
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-10 py-3">
                     Estado
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-8 py-3">
                     Acción
                 </th>
             </tr>
@@ -92,8 +91,7 @@
             </tr>
           </ng-template>
     </table>
-    <br>
-    <div class="flex items-center justify-center pb-8">
+    <div class="flex items-center justify-center pb-8 mt-2">
         <pagination-controls 
           (pageChange)="cambiarPagina($event)" 
           class="custom-pag"
