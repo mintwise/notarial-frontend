@@ -21,7 +21,7 @@
   </nav>
   <div class="flex items-center justify-between space-evenly">
     <div>
-      <h2 class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white">Detalle de Documento</h2>
+      <h2 class="mb-2 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white">Detalle de Documento</h2>
     </div>
     <div class="flex items-center justify-between mr-10">
       <button 
@@ -36,10 +36,9 @@
 <div class="lg:flex h-screen overflow-y-auto">
   <!-- Parte Izquierda - Datos de Documento -->
   <div class="lg:w-1/2 bg-white border-r border-gray-300 p-4 items-center">
-    <div class="mb-10">
-      <!-- AQUÍ VA ICONO DE INFO QUE ABRE MODAL-->
-    </div>
-    <div class="bg-gray-100 p-8 rounded-md ">
+    
+    <div class="bg-gray-100 p-6 rounded-md ">
+      <h2 class="flex items-center justify-center mb-4 font-semibold text-gray-600 dark:text-gray-600">Detalle</h2>
       <div class="mb-4 flex space-x-4 items-center justify-between space-evenly max-w-sm">
           <p class="text-gray-600 font-semibold">Nombre de Documento:</p>
           <p class="text-gray-600">{{documento.filenameDocument}}</p>
@@ -82,16 +81,15 @@
          class="ml-2 text-white bg-[#36494E] hover:bg-[#466D94] dark:bg-[#36494E] dark:hover:bg-[#466D94] font-medium rounded-lg text-sm px-5 py-2.5 text-center"
          (click)="descargarPdf(documento.base64Document, documento.filenameDocument)">
          Descargar PDF</button>
-       
-     </div>
+      </div>
     </div>
     <br>
   </div>
   <!-- Parte Derecha - Visualizador de PDF -->
-  <div class="lg:w-4/6 sm:w-full bg-white p-4 h-screen overflow-y-auto">
+  <div class="lg:w-4/6 sm:w-full bg-white p-2 h-screen overflow-y-auto">
     <!-- Contenido de la parte derecha, como el visor de PDF... -->
-
     <div class="bg-[#36494E] rounded-md items-center p-2">
+      <h3 class="flex items-center justify-center mb-2 font-semibold text-white dark:text-white">Previsualizador</h3>
       <app-pdf-viewer *ngIf="documento.base64Document" [pdfBase64]="documento.base64Document"></app-pdf-viewer>
     </div>
 </div>

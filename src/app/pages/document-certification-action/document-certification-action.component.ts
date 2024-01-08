@@ -14,6 +14,7 @@ import { UploadDocService } from 'src/app/services/upload-doc.service';
 export class DocumentCertificationActionComponent implements OnInit{
   showModal = false;
   showStatus = false;
+  showCerModal =true;
   loading = false;
   success=true;
   message='';
@@ -25,6 +26,7 @@ export class DocumentCertificationActionComponent implements OnInit{
   public documento: any = [];
   public id: string = '';
   fileBase64: string = '';
+  stepFlag=false;
   constructor( private fb: FormBuilder, private route: ActivatedRoute, private documentService: UploadDocService, private signService: SignDocumentService, private certificateService: CertificateService){
   }
 
@@ -189,13 +191,14 @@ export class DocumentCertificationActionComponent implements OnInit{
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'documento.pdf';
+    link.download = this.documento.filenameDocument,'.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   
     // Libera el objeto URL creado
     URL.revokeObjectURL(url);
+    this.stepFlag=true;
   }
 
 }

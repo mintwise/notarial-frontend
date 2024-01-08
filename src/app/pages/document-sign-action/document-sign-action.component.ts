@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { SignDocumentService } from 'src/app/services/sign-document.service';
 import { UploadDocService } from 'src/app/services/upload-doc.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-document-sign-action',
@@ -12,6 +13,7 @@ import { UploadDocService } from 'src/app/services/upload-doc.service';
 export class DocumentSignActionComponent implements OnInit{
   showModal = false;
   showStatus = false;
+  showFirModal=false;
   loading = false;
   success=true;
   message='';
@@ -22,9 +24,16 @@ export class DocumentSignActionComponent implements OnInit{
   public documento: any = [];
   public id: string = '';
   fileBase64: string = '';
+  checkboxChecked=false;
+  nombreUsuario = localStorage.getItem('nombre');
+  correoUsuario = localStorage.getItem('correo');
+  rutUsuario = localStorage.getItem('rut');
+  stepFlag=false;
+
   constructor( private fb: FormBuilder, private route: ActivatedRoute, private documentService: UploadDocService, private signService: SignDocumentService){
   }
 
+ 
   ngOnInit(): void {
     this.showModal=!this.showModal;
     var id = this.route.snapshot.paramMap.get('id');
@@ -35,8 +44,8 @@ export class DocumentSignActionComponent implements OnInit{
   }
   firmarDocumento() { 
     let body = {
-      signOne: this.fileBase64,
       email: localStorage.getItem('correo'),
+      signOne: this.fileBase64,
     }
     this.loading=!this.loading;
     this.limpiar();
@@ -50,9 +59,11 @@ export class DocumentSignActionComponent implements OnInit{
         }else{
           console.log("Mensaje del servidor:", mensaje);
         }
+
       },
       error => {
         console.error("Error al cargar el documento:", error)
+        this.showFirModal=false
         this.mostrarModal('¡Error al cargar el documento!',true)
       }
     );
@@ -136,6 +147,12 @@ export class DocumentSignActionComponent implements OnInit{
       this.documento = data;
       this.showModal = !this.showModal;
     });
+  }
+
+  cerrarModalFirma(){
+    this.stepFlag=false;
+    this.showFirModal=false;
+    this.checkboxChecked=false;
   }
 
 }

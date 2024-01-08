@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit{
   ngOnInit(): void {
     localStorage.setItem('nombre','');
     localStorage.setItem('correo','');
+    localStorage.setItem('rut','');
     localStorage.setItem('rol','');
   }
   public loginForm = this.fb.group({
