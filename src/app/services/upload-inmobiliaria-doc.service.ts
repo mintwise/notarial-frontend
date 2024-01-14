@@ -29,6 +29,23 @@ export class UploadInmobiliariaDoc {
       catchError(error=> of(false) )
     );
   }
+
+  personaContratos(): Observable<Document[]> {
+    return this.http.get<any>(`${ base_url }/list-document-contrato`,{
+      headers:{
+        'Authorization': `Bearer ${this.token}`
+      }
+    }).pipe(
+      map((resp) => {
+          if (resp.status === 'success' && resp.data.documents){
+            return resp.data.documents;
+          }else{
+            console.error('Error:', resp);
+            return null
+          }
+      })
+    );
+  }
   validarRut(rut: string): Observable<boolean> {
     return this.http.get(`${base_url}/get-clients-by-rut?rut=${rut}`,{
       headers: {

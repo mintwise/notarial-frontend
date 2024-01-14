@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { UploadDocService } from 'src/app/services/upload-doc.service';
@@ -9,7 +9,7 @@ import { UploadInmobiliariaDoc } from 'src/app/services/upload-inmobiliaria-doc.
   templateUrl: './document-poliza-upload.component.html',
   styleUrls: ['./document-poliza-upload.component.css']
 })
-export class DocumentPolizaUploadComponent {
+export class DocumentPolizaUploadComponent implements OnInit{
   rutValido = true;
   roleUser= localStorage.getItem('rol');
   showModal = false;
@@ -19,7 +19,8 @@ export class DocumentPolizaUploadComponent {
   message='';
   public fileBase64='';
   public rut: string = '';
-  
+  public personas: any = []
+
   public uploadForm = this.fb.group({
     rut: ['', [ Validators.required ]],
     nombre_doc: ['', [ Validators.required ]],
@@ -31,6 +32,11 @@ export class DocumentPolizaUploadComponent {
 
   constructor( private fb: FormBuilder,
       private documentService: UploadDocService, private polizaService: UploadInmobiliariaDoc) {}
+
+
+  ngOnInit(): void {
+    this.cargarPersonas();
+  }
 
       onFileSelected(event:any) {
         const reader = new FileReader();
@@ -49,6 +55,12 @@ export class DocumentPolizaUploadComponent {
           console.error('Por favor, selecciona un archivo PDF.');
         }
     }
+
+  cargarPersonas(){
+    this.polizaService.personaContratos().subscribe((data)=>{
+      this.personas = data;
+    });
+  }
   cargarDocumento() { 
     
     let body = {

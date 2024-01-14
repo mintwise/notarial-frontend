@@ -19,7 +19,15 @@ export class CertificateService {
         'Authorization': `Bearer ${this.token}`
       }
     }).pipe(
-      map((resp: any) => resp.message)
+      map((resp: any) => {
+        if (resp && resp.status === 'success') {
+          // La solicitud fue exitosa
+          return resp;
+        } else {
+          // Manejar otros escenarios según sea necesario
+          throw new Error('La solicitud no fue exitosa');
+        }
+      })
     );
 
   }

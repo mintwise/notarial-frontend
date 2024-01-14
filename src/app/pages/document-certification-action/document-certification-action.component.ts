@@ -41,20 +41,19 @@ export class DocumentCertificationActionComponent implements OnInit{
   }
   certificarDocumento() { 
     let body = {
-      signOne: this.fileBase64,
-      email: localStorage.getItem('correo'),
+      base64: this.fileBase64,
     }
     this.loading=!this.loading;
     this.limpiar();
     this.certificateService.certificarDocumento(this.idBody,body).subscribe(
-      mensaje => {
+      resp => {
         
-        if( mensaje = 'Documento agregado correctamente.'){
+        if( resp.status === 'success'){
           this.loading=!this.loading;
           this.mostrarModal('¡Documento Certificado!',false)
 
         }else{
-          console.log("Mensaje del servidor:", mensaje);
+          console.log("Mensaje del servidor:", resp);
         }
       },
       error => {
