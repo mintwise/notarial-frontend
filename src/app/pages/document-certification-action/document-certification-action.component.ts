@@ -76,7 +76,6 @@ export class DocumentCertificationActionComponent implements OnInit{
       reader.onload = (event: any) => {
         const base64String = event.target.result.split(',')[1];
         this.fileBase64 = base64String;
-        console.log('data:',this.fileBase64)
       };
       reader.readAsDataURL(file);
     } else if (file.type !== 'application/pdf') {
@@ -153,7 +152,6 @@ export class DocumentCertificationActionComponent implements OnInit{
       this.documento = data;
       if(this.documento!=''){
         this.showModal = false;
-        console.log('showModal = false')
       } else{
         console.log('no hay data')
       }
