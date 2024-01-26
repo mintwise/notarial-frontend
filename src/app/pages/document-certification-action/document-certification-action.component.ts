@@ -49,10 +49,11 @@ export class DocumentCertificationActionComponent implements OnInit{
       resp => {
         
         if( resp.status === 'success'){
+          console.log('exitoso')
           this.showCerModal =false;
           this.loading=false;
-          this.getDocumentData(this.id)
           this.mostrarModal('¡Documento Certificado!',false)
+          this.getDocumentData(this.id)
 
         }else{
           this.showCerModal = false;
@@ -150,7 +151,12 @@ export class DocumentCertificationActionComponent implements OnInit{
     this.idBody=id;
     this.documentService.listarDocumento(id).subscribe((data)=>{
       this.documento = data;
-      this.showModal = false;
+      if(this.documento!=''){
+        this.showModal = false;
+        console.log('showModal = false')
+      } else{
+        console.log('no hay data')
+      }
     });
   }
 
@@ -195,7 +201,7 @@ export class DocumentCertificationActionComponent implements OnInit{
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = this.documento.filenameDocument,'.pdf';
+    link.download = this.documento.filenameDocument+'.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
