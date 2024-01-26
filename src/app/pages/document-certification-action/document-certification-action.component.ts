@@ -31,7 +31,7 @@ export class DocumentCertificationActionComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.showModal=!this.showModal;
+    this.showModal=true;
     var id = this.route.snapshot.paramMap.get('id');
     if(id){
       this.obtenerConglomerado(id);
@@ -43,14 +43,14 @@ export class DocumentCertificationActionComponent implements OnInit{
     let body = {
       base64: this.fileBase64,
     }
-    this.loading=!this.loading;
+    this.loading=true;
     this.limpiar();
     this.certificateService.certificarDocumento(this.idBody,body).subscribe(
       resp => {
         
         if( resp.status === 'success'){
           this.showCerModal =false;
-          this.loading=!this.loading;
+          this.loading=false;
           this.getDocumentData(this.id)
           this.mostrarModal('¡Documento Certificado!',false)
 
@@ -150,7 +150,7 @@ export class DocumentCertificationActionComponent implements OnInit{
     this.idBody=id;
     this.documentService.listarDocumento(id).subscribe((data)=>{
       this.documento = data;
-      this.showModal = !this.showModal;
+      this.showModal = false;
     });
   }
 
