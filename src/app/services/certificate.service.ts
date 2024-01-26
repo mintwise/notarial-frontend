@@ -20,7 +20,7 @@ export class CertificateService {
       }
     }).pipe(
       map((resp: any) => {
-        if (resp && resp.status === 'success') {
+        if (resp.status === 'success') {
           // La solicitud fue exitosa
           return resp;
         } else {

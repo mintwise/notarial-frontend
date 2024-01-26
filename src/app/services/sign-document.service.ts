@@ -20,9 +20,9 @@ export class SignDocumentService {
       }
     }).pipe(
       map((resp: any) => {
-        if (resp && resp.status === 'success') {
+        if (resp.status === 'success') {
           // La solicitud fue exitosa
-          return resp.data.signTemplate.base64Document;
+          return resp.status;
         } else {
           // Manejar otros escenarios según sea necesario
           throw new Error('La solicitud no fue exitosa');

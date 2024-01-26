@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SignDocumentService } from 'src/app/services/sign-document.service';
 import { UploadDocService } from 'src/app/services/upload-doc.service';
 import { FormsModule } from '@angular/forms';
@@ -30,7 +30,7 @@ export class DocumentSignActionComponent implements OnInit{
   rutUsuario = localStorage.getItem('rut');
   stepFlag=false;
 
-  constructor( private fb: FormBuilder, private route: ActivatedRoute, private documentService: UploadDocService, private signService: SignDocumentService){
+  constructor( private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private documentService: UploadDocService, private signService: SignDocumentService){
   }
 
  
@@ -50,14 +50,15 @@ export class DocumentSignActionComponent implements OnInit{
     this.loading=!this.loading;
     this.limpiar();
     this.signService.firmarDocumento(this.idBody,body).subscribe(
-      mensaje => {
+      resp => {
         
-        if( mensaje != ''){
+        if( resp === 'success'){
           this.loading=!this.loading;
+          this.cerrarModalFirma();
           this.mostrarModal('¡Firma Exitosa!',false);
           this.getDocumentData(this.id);
         }else{
-          console.log("Mensaje del servidor:", mensaje);
+          console.log("Mensaje del servidor:", resp);
         }
 
       },
@@ -145,7 +146,7 @@ export class DocumentSignActionComponent implements OnInit{
     this.idBody=id;
     this.documentService.listarDocumento(id).subscribe((data)=>{
       this.documento = data;
-      this.showModal = !this.showModal;
+      this.showModal = this.showModal=false;
     });
   }
 
@@ -153,6 +154,11 @@ export class DocumentSignActionComponent implements OnInit{
     this.stepFlag=false;
     this.showFirModal=false;
     this.checkboxChecked=false;
+  }
+
+  volverInicio(){
+    const rutaDestino = '/documents';
+    this.router.navigate([rutaDestino]);
   }
 
 }

@@ -34,10 +34,13 @@ export class DocumentsComponent implements OnInit{
 
       }
   ngOnInit(): void {
+    this.cargarData();
+  }
+
+  cargarData(){
     this.showModal=!this.showModal;
     this.obtenerDocumentos();
   }
-
 
   getPaginationClass(page: number): string {
     // Aquí puedes definir la lógica para asignar clases según tu diseño
@@ -82,6 +85,10 @@ export class DocumentsComponent implements OnInit{
   search() {
     this.documentos = this.filterTableData();
     // Puedes asignar los documentos filtrados a otra variable si es necesario
+  }
+
+  quitarFiltros(){
+    this.cargarData();
   }
   obtenerDocumentos(){
     this.documentService.obtenerDatos().subscribe((data)=>{

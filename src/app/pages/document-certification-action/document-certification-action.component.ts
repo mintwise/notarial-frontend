@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';
 import { CertificateService } from 'src/app/services/certificate.service';
 import { SignDocumentService } from 'src/app/services/sign-document.service';
@@ -14,7 +14,7 @@ import { UploadDocService } from 'src/app/services/upload-doc.service';
 export class DocumentCertificationActionComponent implements OnInit{
   showModal = false;
   showStatus = false;
-  showCerModal =true;
+  showCerModal =false;
   loading = false;
   success=true;
   message='';
@@ -27,7 +27,7 @@ export class DocumentCertificationActionComponent implements OnInit{
   public id: string = '';
   fileBase64: string = '';
   stepFlag=false;
-  constructor( private fb: FormBuilder, private route: ActivatedRoute, private documentService: UploadDocService, private signService: SignDocumentService, private certificateService: CertificateService){
+  constructor( private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private documentService: UploadDocService, private signService: SignDocumentService, private certificateService: CertificateService){
   }
 
   ngOnInit(): void {
@@ -49,14 +49,18 @@ export class DocumentCertificationActionComponent implements OnInit{
       resp => {
         
         if( resp.status === 'success'){
+          this.showCerModal =false;
           this.loading=!this.loading;
+          this.getDocumentData(this.id)
           this.mostrarModal('¡Documento Certificado!',false)
 
         }else{
+          this.showCerModal = false;
           console.log("Mensaje del servidor:", resp);
         }
       },
       error => {
+        this.showCerModal = false;
         console.error("Error al cargar el documento:", error)
         this.mostrarModal('¡Error al Certificar el documento!',true)
       }
@@ -71,6 +75,7 @@ export class DocumentCertificationActionComponent implements OnInit{
       reader.onload = (event: any) => {
         const base64String = event.target.result.split(',')[1];
         this.fileBase64 = base64String;
+        console.log('data:',this.fileBase64)
       };
       reader.readAsDataURL(file);
     } else if (file.type !== 'application/pdf') {
@@ -200,5 +205,10 @@ export class DocumentCertificationActionComponent implements OnInit{
     this.stepFlag=true;
   }
 
+  volverInicio(){
+    const rutaDestino = '/documents';
+    this.router.navigate([rutaDestino]);
+  }
 }
+
 
