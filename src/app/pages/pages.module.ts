@@ -14,6 +14,7 @@ import { SharedModule } from '../shared/shared.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 import { RouterModule } from '@angular/router';
+import { DocumentFEAComponent } from './document-fea/document-fea.component';
 
 
 
@@ -33,6 +34,7 @@ import { RouterModule } from '@angular/router';
     DocumentCertificationComponent,
     DocumentCertificationActionComponent,
     PagesComponent,
+    DocumentFEAComponent,
   ],
   exports: [
     DocumentsComponent,
@@ -49,6 +51,7 @@ import { RouterModule } from '@angular/router';
     DocumentCertificationComponent,
     DocumentCertificationActionComponent,
     PagesComponent,
+    DocumentFEAComponent,
   ],
   imports: [
     CommonModule, 

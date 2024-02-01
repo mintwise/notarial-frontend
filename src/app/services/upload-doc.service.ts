@@ -64,6 +64,22 @@ export class UploadDocService {
     );
   }
 
+  actualizarDocumento(id:string, formData: any): Observable<any>{
+    return this.http.post<any>(`${ base_url }/document/${id}`,formData,{
+      headers: {
+        'Authorization': `Bearer ${this.token}`
+      }
+    }).pipe(
+      map((resp) => {
+        if (resp.status === 'success'){
+          return resp.data;
+        }else{
+          console.error('Error:', resp);
+          return null
+        }
+      })
+    );
+  }  
   eliminarDocumento(id:string){
     return this.http.delete<any>(`${ base_url }/document/${id}`,{
       headers: {

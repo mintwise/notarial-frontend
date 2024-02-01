@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
 import { DocumentsComponent } from './documents/documents.component';
+import { DocumentFEAComponent } from './document-fea/document-fea.component';
 import { DocumentCertificationComponent } from './document-certification/document-certification.component';
 import { DocumentCertificationActionComponent } from './document-certification-action/document-certification-action.component';
 import { DocumentUploadComponent } from './document-upload/document-upload.component';
@@ -19,6 +20,7 @@ export const routes: Routes = [
         canActivate: [AuthGuard],
         children: [
           { path:'documents', component: DocumentsComponent },
+          { path:'documents-fea', component: DocumentFEAComponent },
           { path:'document-certification', component: DocumentCertificationComponent },
           { path:'document-certification-action/:id', component: DocumentCertificationActionComponent },
           { path:'document-upload', component: DocumentUploadComponent },

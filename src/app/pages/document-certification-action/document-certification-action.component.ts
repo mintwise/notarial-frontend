@@ -17,7 +17,7 @@ export class DocumentCertificationActionComponent implements OnInit{
   showCerModal =false;
   loading = false;
   success=true;
-  message='';
+  message=''; 
   idBody='';
   public uploadForm = this.fb.group({
     file: [null, Validators.required]
@@ -84,7 +84,7 @@ export class DocumentCertificationActionComponent implements OnInit{
       this.mostrarModal('El documento debe ser en formato PDF.',true)
       console.error('Por favor, selecciona un archivo PDF.');
     }
-}
+  }
 
   private async resizeAndConvertToBase64(file: File): Promise<string> {
     return new Promise<string>((resolve) => {

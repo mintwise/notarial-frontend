@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UploadDocService } from 'src/app/services/upload-doc.service';
 
@@ -9,11 +10,23 @@ import { UploadDocService } from 'src/app/services/upload-doc.service';
 })
 export class DocumentDetailComponent implements OnInit{
   showModal = false;
+  showRevModal = false;
+  showStatus=false;
   showDelete = false;
-  session = localStorage.getItem('rol')
+  success=true;
+  message: string = ''; 
+  session = localStorage.getItem('rol');
+  correo = localStorage.getItem('correo')
   public documento: any = [];
   public id: string = '';
-  constructor( private route: ActivatedRoute, private router: Router, private documentService: UploadDocService){
+  fileBase64: string = '';
+
+  public uploadForm = this.fb.group({
+    file: [null, Validators.required]
+  });
+
+
+  constructor( private route: ActivatedRoute, private router: Router, private documentService: UploadDocService, private fb: FormBuilder){
   }
 
   ngOnInit(): void {
@@ -47,7 +60,63 @@ export class DocumentDetailComponent implements OnInit{
       }
     });
   }
+  mostrarModal(message:string, bool: boolean) {
+    this.showStatus = true;
+    if(bool==true){
+      this.success=false;
+      this.message=message;
+    }else if(bool == false){
+      this.success=true;
+      this.message=message;
+    }
+    setTimeout(() => {
+      this.showStatus = false;
+    }, 1500); // 3000 milisegundos = 3 segundos
+  }
 
+  onFileSelected(event:any) {
+    const reader = new FileReader();
+    const file:File = event.target.files[0];
+
+    if (file && file.type === 'application/pdf') {
+      reader.onload = (event: any) => {
+        const base64String = event.target.result.split(',')[1];
+        this.fileBase64 = base64String;
+      };
+      reader.readAsDataURL(file);
+    } else if (file.type !== 'application/pdf') {
+      this.limpiar();
+      //modal de error de carga
+      this.mostrarModal('El documento debe ser en formato PDF.',true)
+      console.error('Por favor, selecciona un archivo PDF.');
+    }
+  }
+
+  updateDocument(id:string){
+    //Abrir modal subida de archivo
+    this.showRevModal = true; //crear variable para modal de subida de archivo
+
+    let body = {
+      id: id,
+      correo: this.correo,
+      base64: this.fileBase64,
+    }
+
+    this.documentService.actualizarDocumento(id, body).subscribe((data)=>{
+      if( data ){
+        //Actualizar página
+        this.mostrarModal('Documento reemplazado con éxito',false);
+        //Actualizar Documento
+        this.getDocumentData(id);
+        this.showRevModal = false; //cerrar modal cuando se recargue la página
+      } else if( data === null ){
+        this.mostrarModal('Error al reemplazar documento',true);
+        this.limpiar();
+      }
+    });
+  }
+
+  
 
   descargarPdf(b64: string, nombre: string){
     let base64PDF=b64;
@@ -74,5 +143,11 @@ export class DocumentDetailComponent implements OnInit{
     // Libera el objeto URL creado
     URL.revokeObjectURL(url);
   }
+  
+  limpiar(){
+    this.uploadForm.reset();
+    this.fileBase64='';
+  }
 
 }
+
