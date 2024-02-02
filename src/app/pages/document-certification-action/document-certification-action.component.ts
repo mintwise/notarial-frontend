@@ -50,12 +50,12 @@ export class DocumentCertificationActionComponent implements OnInit{
         
         if( resp.status === 'success'){
           console.log('exitoso')
-          this.showCerModal =false;
           this.loading=false;
+          this.showCerModal =false;
           this.mostrarModal('¡Documento Certificado!',false)
           this.getDocumentData(this.id)
-
         }else{
+          this.loading=false;
           this.showCerModal = false;
           console.log("Mensaje del servidor:", resp);
         }
@@ -149,12 +149,8 @@ export class DocumentCertificationActionComponent implements OnInit{
   getDocumentData(id: string){
     this.idBody=id;
     this.documentService.listarDocumento(id).subscribe((data)=>{
-      this.documento = data;
-      if(this.documento!=''){
+        this.documento = data;
         this.showModal = false;
-      } else{
-        console.log('no hay data')
-      }
     });
   }
 

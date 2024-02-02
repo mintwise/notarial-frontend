@@ -65,14 +65,14 @@ export class UploadDocService {
   }
 
   actualizarDocumento(id:string, formData: any): Observable<any>{
-    return this.http.post<any>(`${ base_url }/document/${id}`,formData,{
+    return this.http.post<any>(`${ base_url }/api/update-document-fea/?id=${id}`,formData,{
       headers: {
         'Authorization': `Bearer ${this.token}`
       }
     }).pipe(
       map((resp) => {
         if (resp.status === 'success'){
-          return resp.data;
+          return resp;
         }else{
           console.error('Error:', resp);
           return null

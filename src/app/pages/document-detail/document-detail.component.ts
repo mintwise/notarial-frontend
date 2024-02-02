@@ -30,17 +30,18 @@ export class DocumentDetailComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.showModal=!this.showModal;
+    this.showModal=true;
     var id = this.route.snapshot.paramMap.get('id');
     if(id){
       this.getDocumentData(id);
+      this.id=id;
     }
   }
 
   getDocumentData(id: string){
     this.documentService.listarDocumento(id).subscribe((data)=>{
       this.documento = data;
-      this.showModal = !this.showModal;
+      this.showModal = false;
     });
   }
 
@@ -92,24 +93,24 @@ export class DocumentDetailComponent implements OnInit{
     }
   }
 
-  updateDocument(id:string){
+  updateDocument(){
     //Abrir modal subida de archivo
-    this.showRevModal = true; //crear variable para modal de subida de archivo
-
+    let id=this.id; //crear variable para modal de subida de archivo
+    
     let body = {
-      id: id,
-      correo: this.correo,
-      base64: this.fileBase64,
+      base64Document: this.fileBase64,
     }
 
     this.documentService.actualizarDocumento(id, body).subscribe((data)=>{
-      if( data ){
+
+      if( data.status === 'success' ){
         //Actualizar página
+        this.showRevModal = false; //cerrar modal cuando se recargue la página
         this.mostrarModal('Documento reemplazado con éxito',false);
         //Actualizar Documento
         this.getDocumentData(id);
-        this.showRevModal = false; //cerrar modal cuando se recargue la página
       } else if( data === null ){
+        this.showRevModal = false; //cerrar modal 
         this.mostrarModal('Error al reemplazar documento',true);
         this.limpiar();
       }
