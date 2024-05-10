@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';
+import { Base64Service } from 'src/app/services/base64.service';
 import { CertificateService } from 'src/app/services/certificate.service';
 import { SignDocumentService } from 'src/app/services/sign-document.service';
 import { UploadDocService } from 'src/app/services/upload-doc.service';
@@ -26,8 +27,9 @@ export class DocumentCertificationActionComponent implements OnInit{
   public documento: any = [];
   public id: string = '';
   fileBase64: string = '';
+  file: any;
   stepFlag=false;
-  constructor( private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private documentService: UploadDocService, private signService: SignDocumentService, private certificateService: CertificateService){
+  constructor( private fb: FormBuilder, private fileConverter: Base64Service, private route: ActivatedRoute, private router: Router, private documentService: UploadDocService, private signService: SignDocumentService, private certificateService: CertificateService){
   }
 
   ngOnInit(): void {
@@ -41,7 +43,7 @@ export class DocumentCertificationActionComponent implements OnInit{
   }
   certificarDocumento() { 
     let body = {
-      base64: this.fileBase64,
+      file: this.file,
     }
     this.loading=true;
     this.limpiar();
@@ -52,8 +54,8 @@ export class DocumentCertificationActionComponent implements OnInit{
           console.log('exitoso')
           this.loading=false;
           this.showCerModal =false;
-          this.mostrarModal('¡Documento Certificado!',false)
-          this.getDocumentData(this.id)
+          this.mostrarModal('¡Documento Certificado!',false);
+          this.getDocumentData(this.id);
         }else{
           this.loading=false;
           this.showCerModal = false;
@@ -74,8 +76,7 @@ export class DocumentCertificationActionComponent implements OnInit{
 
     if (file && file.type === 'application/pdf') {
       reader.onload = (event: any) => {
-        const base64String = event.target.result.split(',')[1];
-        this.fileBase64 = base64String;
+        this.file=file;
       };
       reader.readAsDataURL(file);
     } else if (file.type !== 'application/pdf') {
@@ -84,49 +85,6 @@ export class DocumentCertificationActionComponent implements OnInit{
       this.mostrarModal('El documento debe ser en formato PDF.',true)
       console.error('Por favor, selecciona un archivo PDF.');
     }
-  }
-
-  private async resizeAndConvertToBase64(file: File): Promise<string> {
-    return new Promise<string>((resolve) => {
-      const reader = new FileReader();
-
-      reader.onload = (readerEvent: any) => {
-        const img = new Image();
-
-        img.onload = () => {
-          const canvas = document.createElement('canvas');
-          const ctx = canvas.getContext('2d');
-
-          if (!ctx) {
-            console.error('No se pudo obtener el contexto del lienzo.');
-            resolve('');
-            return;
-          }
-
-          const targetWidth = 1280;
-          const targetHeight = 750;
-
-          let newWidth = targetWidth;
-          let newHeight = targetWidth / (img.width / img.height);
-
-          if (newHeight > targetHeight) {
-            newHeight = targetHeight;
-            newWidth = newHeight * (img.width / img.height);
-          }
-
-          canvas.width = newWidth;
-          canvas.height = newHeight;
-
-          ctx.drawImage(img, 0, 0, newWidth, newHeight);
-
-          resolve(canvas.toDataURL('image/png').split(',')[1]);
-        };
-
-        img.src = readerEvent.target.result;
-      };
-
-      reader.readAsDataURL(file);
-    });
   }
 
     limpiar(){
@@ -150,6 +108,20 @@ export class DocumentCertificationActionComponent implements OnInit{
     this.idBody=id;
     this.documentService.listarDocumento(id).subscribe((data)=>{
         this.documento = data;
+        if (this.documento) {
+          this.fileConverter.getUrlAsBase64(this.documento.url).subscribe((data) => {
+            if (typeof data === 'string') {
+              // Si data es una cadena, asignarla a fileBase64
+              this.fileBase64 = data;
+            } else if (data === null) {
+              // Si data es null, asignar un valor predeterminado o manejar el caso según lo necesites
+              this.fileBase64 = ''; // o cualquier otro valor predeterminado que desees
+            } else {
+              // Si data es undefined u otro tipo, manejarlo según lo necesites
+              console.error('El valor recibido no es válido.');
+            }
+          });
+        }
         this.showModal = false;
     });
   }

@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable, map } from 'rxjs';
@@ -13,11 +13,20 @@ export class UploadDocService {
 
 
   cargarDocumento( formData: any): Observable<any> {
+    let body = new FormData();
+    body.append('file', formData.file);
+    
+    let params = new HttpParams()
+      .set('nameClient', formData.nameClient)
+      .set('rutClient', formData.rutClient)
+      .set('emailClient', formData.emailClient)
+      .set('typeDocument', formData.typeDocument);
 
-    return this.http.post(`${base_url}/notaria/document`, formData,{
+    return this.http.post(`${base_url}/notaria/document`, body,{
       headers: {
         'Authorization': `Bearer ${this.token}`
-      }
+      },
+      params: params
     }).pipe(
       map((resp: any) => {
         if (resp.status === 'success' && resp.data.document){
@@ -28,8 +37,8 @@ export class UploadDocService {
         }
       })
     );
-
   }
+
   obtenerDatos(): Observable<Document[]> {
     return this.http.get<any>(`${ base_url }/documents`,{
       headers:{
@@ -55,7 +64,9 @@ export class UploadDocService {
     }).pipe(
       map((resp) => {
         if (resp.status === 'success' && resp.data.document){
-          return resp.data.document;
+          if(resp.data.document.url != ''){
+            return resp.data.document;
+          }
         }else{
           console.error('Error:', resp);
           return null
@@ -65,7 +76,12 @@ export class UploadDocService {
   }
 
   actualizarDocumento(id:string, formData: any): Observable<any>{
-    return this.http.post<any>(`${ base_url }/api/update-document-fea/?id=${id}`,formData,{
+
+    let body = new FormData();
+    body.append('file', formData.file);
+
+
+    return this.http.post<any>(`${ base_url }/api/update-document-fea/?id=${id}`,body,{
       headers: {
         'Authorization': `Bearer ${this.token}`
       }

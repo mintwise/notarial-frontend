@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable, map } from 'rxjs';
@@ -11,10 +11,13 @@ export class CertificateService {
   token= localStorage.getItem('token');
   constructor( private http: HttpClient) { }
 
-
+  
   certificarDocumento( id:string ,formData: any): Observable<any> {
+    
+    let body = new FormData();
+    body.append('file', formData.file);
 
-    return this.http.post(`${base_url}/notaria/certificate/${id}`, formData,{
+    return this.http.post(`${base_url}/notaria/certificate/${id}`, body,{
       headers:{
         'Authorization': `Bearer ${this.token}`
       }

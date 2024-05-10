@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable, catchError, map , of} from 'rxjs';
@@ -12,10 +12,19 @@ export class UploadInmobiliariaDoc {
   constructor( private http: HttpClient) { }
   
   cargarDocumento( formData: any): Observable<any> {
-    return this.http.post(`${base_url}/inmobiliaria/document`, formData,{
+    console.log(formData);
+    let body = new FormData();
+    body.append('file', formData.file);
+
+    let params = new HttpParams()
+      .set('rutClient', formData.rutClient)
+      .set('typeDocument', formData.typeDocument);
+
+    return this.http.post(`${base_url}/inmobiliaria/document`, body,{
       headers: {
         'Authorization': `Bearer ${this.token}`
-      }
+      },
+      params: params
     }).pipe(
       map((resp: any) => {
 

@@ -20,18 +20,18 @@ export class DocumentPolizaUploadComponent implements OnInit{
   public fileBase64='';
   public rut: string = '';
   public personas: any = []
+  file: any;
 
   public uploadForm = this.fb.group({
     rut: ['', [ Validators.required ]],
     nombre_doc: ['', [ Validators.required ]],
-    file: [null]
+    file: [null, Validators.required]
   });
 
 
 
 
-  constructor( private fb: FormBuilder,
-      private documentService: UploadDocService, private polizaService: UploadInmobiliariaDoc) {}
+  constructor( private fb: FormBuilder, private polizaService: UploadInmobiliariaDoc) {}
 
 
   ngOnInit(): void {
@@ -44,6 +44,7 @@ export class DocumentPolizaUploadComponent implements OnInit{
 
         if (file && file.type === 'application/pdf') {
           reader.onload = (event: any) => {
+            this.file = file;
             const base64String = event.target.result.split(',')[1];
             this.fileBase64 = base64String;
           };
@@ -65,25 +66,25 @@ export class DocumentPolizaUploadComponent implements OnInit{
     
     let body = {
       rutClient: this.uploadForm.get('rut')?.value,
-      filenameDocument: this.uploadForm.get('nombre_doc')?.value,
       typeDocument: 'Poliza',
-      base64Document: this.fileBase64,
+      file: this.file,
     }
+    console.log('body:',body)
     this.loading=!this.loading;
     this.limpiar();
     this.polizaService.cargarDocumento(body).subscribe(
       mensaje => {
         
-        if(mensaje='Conglomerado creado.'){
+        if(mensaje='Documento agregado correctamente.'){
           this.loading=!this.loading;
           this.mostrarModal('¡Documento Cargado!',false)
 
         }
+        console.log("Mensaje del servidor:", mensaje);
       },
       error => {
         console.error("Error al cargar el documento:", error)
         this.mostrarModal('Error al cargar documento.',true)
-        this.loading=!this.loading;
       }
     );
   }

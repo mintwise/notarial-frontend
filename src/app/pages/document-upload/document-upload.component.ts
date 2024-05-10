@@ -14,6 +14,7 @@ export class DocumentUploadComponent {
   loading = false;
   success=false;
   message='';
+  file:any;
   public fileBase64='';
   public rut: string = '';
   public sessionRol = localStorage.getItem('rol');
@@ -23,7 +24,7 @@ export class DocumentUploadComponent {
     email_client: ['', [Validators.required, Validators.email]],
     nombre_doc: ['', [ Validators.required ]],
     tipo_doc: ['', [ Validators.required ]],
-    file: [null]
+    file: [null, Validators.required]
   });
 
 
@@ -38,6 +39,7 @@ export class DocumentUploadComponent {
 
         if (file && file.type === 'application/pdf') {
           reader.onload = (event: any) => {
+            this.file=file;
             const base64String = event.target.result.split(',')[1];
             this.fileBase64 = base64String;
           };
@@ -60,7 +62,7 @@ export class DocumentUploadComponent {
       emailClient: this.uploadForm.get('email_client')?.value,
       filenameDocument: this.uploadForm.get('nombre_doc')?.value,
       typeDocument: this.uploadForm.get('tipo_doc')?.value,
-      base64Document: this.fileBase64,
+      file: this.file,
     }
     this.loading=!this.loading;
     this.limpiar();

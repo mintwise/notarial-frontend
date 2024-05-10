@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable, map } from 'rxjs';
@@ -14,10 +14,17 @@ export class SignDocumentService {
 
   firmarDocumento( id:string ,formData: any): Observable<any> {
 
-    return this.http.post(`${base_url}/inmobiliaria/signDocument/${id}`, formData,{
+    let body = new FormData();
+    body.append('file', formData.file);
+    
+    let params = new HttpParams()
+      .set('id', id);
+
+    return this.http.post(`${base_url}/inmobiliaria/signDocument/`, body,{
       headers: {
         'Authorization': `Bearer ${this.token}`
-      }
+      },
+      params: params
     }).pipe(
       map((resp: any) => {
         if (resp.status === 'success') {

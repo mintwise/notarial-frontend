@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SignDocumentService } from 'src/app/services/sign-document.service';
 import { UploadDocService } from 'src/app/services/upload-doc.service';
 import { FormsModule } from '@angular/forms';
+import { Base64Service } from 'src/app/services/base64.service';
 
 @Component({
   selector: 'app-document-sign-action',
@@ -18,8 +19,10 @@ export class DocumentSignActionComponent implements OnInit{
   success=true;
   message='';
   idBody='';
+  pdf: (() => string) | undefined ;
+  file: any;
   public uploadForm = this.fb.group({
-    file: [null]
+    file: [null, Validators.required]
   });
   public documento: any = [];
   public id: string = '';
@@ -30,7 +33,7 @@ export class DocumentSignActionComponent implements OnInit{
   rutUsuario = localStorage.getItem('rut');
   stepFlag=false;
 
-  constructor( private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private documentService: UploadDocService, private signService: SignDocumentService){
+  constructor( private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private documentService: UploadDocService, private signService: SignDocumentService, private fileConverter: Base64Service){
   }
 
  
@@ -42,10 +45,12 @@ export class DocumentSignActionComponent implements OnInit{
       this.id=id;
     }
   }
+
+
+
   firmarDocumento() { 
     let body = {
-      email: localStorage.getItem('correo'),
-      signOne: this.fileBase64,
+      file: this.file,
     }
     this.loading=!this.loading;
     this.limpiar();
@@ -74,7 +79,7 @@ export class DocumentSignActionComponent implements OnInit{
     const file: File = event.target.files[0];
 
     if (file && file.type === 'image/png') {
-      this.fileBase64 = await this.resizeAndConvertToBase64(file);
+      this.file=file;
     } else if(file.type !== 'image/png'){
       this.limpiar(),
       this.mostrarModal('Debes adjuntar un archivo .png',true)
@@ -142,13 +147,27 @@ export class DocumentSignActionComponent implements OnInit{
         this.showStatus = false;
       }, 1500); // 3000 milisegundos = 3 segundos
     }
-  getDocumentData(id: string){
-    this.idBody=id;
-    this.documentService.listarDocumento(id).subscribe((data)=>{
-      this.documento = data;
-      this.showModal = this.showModal=false;
-    });
-  }
+    getDocumentData(id: string) {
+      this.idBody = id;
+      this.documentService.listarDocumento(id).subscribe((data) => {
+        this.documento = data;
+        if (this.documento) {
+          this.fileConverter.getUrlAsBase64(this.documento.url).subscribe((data) => {
+            if (typeof data === 'string') {
+              // Si data es una cadena, asignarla a fileBase64
+              this.fileBase64 = data;
+            } else if (data === null) {
+              // Si data es null, asignar un valor predeterminado o manejar el caso según lo necesites
+              this.fileBase64 = ''; // o cualquier otro valor predeterminado que desees
+            } else {
+              // Si data es undefined u otro tipo, manejarlo según lo necesites
+              console.error('El valor recibido no es válido.');
+            }
+          });
+        }
+        this.showModal = false;
+      });
+    }
 
   cerrarModalFirma(){
     this.stepFlag=false;

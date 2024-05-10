@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UploadDocService } from 'src/app/services/upload-doc.service';
+import { Base64Service } from 'src/app/services/base64.service';
 
 @Component({
   selector: 'app-document-detail',
@@ -20,13 +21,13 @@ export class DocumentDetailComponent implements OnInit{
   public documento: any = [];
   public id: string = '';
   fileBase64: string = '';
-
+  file:any;
   public uploadForm = this.fb.group({
     file: [null, Validators.required]
   });
 
 
-  constructor( private route: ActivatedRoute, private router: Router, private documentService: UploadDocService, private fb: FormBuilder){
+  constructor( private base64Service: Base64Service ,private route: ActivatedRoute, private router: Router, private documentService: UploadDocService, private fb: FormBuilder){
   }
 
   ngOnInit(): void {
@@ -38,12 +39,23 @@ export class DocumentDetailComponent implements OnInit{
     }
   }
 
+
+  
   getDocumentData(id: string){
-    this.documentService.listarDocumento(id).subscribe((data)=>{
+    this.documentService.listarDocumento(id).subscribe((data) => {
       this.documento = data;
-      this.showModal = false;
+      if (data.url != '') {
+        this.base64Service.getUrlAsBase64(data.url).subscribe(base64Data => {
+          if (base64Data !== null) {
+            const documentoConBase64 = { ...data, base64Document: base64Data };
+            this.documento = documentoConBase64;
+          }
+          this.showModal = false;
+        });
+      }
     });
   }
+  
 
   deleteDocument(id:string){
 
@@ -81,6 +93,7 @@ export class DocumentDetailComponent implements OnInit{
 
     if (file && file.type === 'application/pdf') {
       reader.onload = (event: any) => {
+        this.file = file;
         const base64String = event.target.result.split(',')[1];
         this.fileBase64 = base64String;
       };
@@ -98,7 +111,7 @@ export class DocumentDetailComponent implements OnInit{
     let id=this.id; //crear variable para modal de subida de archivo
     
     let body = {
-      base64Document: this.fileBase64,
+      file: this.file,
     }
 
     this.documentService.actualizarDocumento(id, body).subscribe((data)=>{
