@@ -15,6 +15,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 import { RouterModule } from '@angular/router';
 import { DocumentFEAComponent } from './document-fea/document-fea.component';
+import { DocumentsVehiculosMotorizadosComponent } from './documents-vehiculos-motorizados/documents-vehiculos-motorizados.component';
 
 
 
@@ -35,6 +36,7 @@ import { DocumentFEAComponent } from './document-fea/document-fea.component';
     DocumentCertificationActionComponent,
     PagesComponent,
     DocumentFEAComponent,
+    DocumentsVehiculosMotorizadosComponent,
   ],
   exports: [
     DocumentsComponent,
