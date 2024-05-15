@@ -51,7 +51,6 @@ export class DocumentCertificationActionComponent implements OnInit{
       resp => {
         
         if( resp.status === 'success'){
-          console.log('exitoso')
           this.loading=false;
           this.showCerModal =false;
           this.mostrarModal('¡Documento Certificado!',false);
