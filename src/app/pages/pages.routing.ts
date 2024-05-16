@@ -13,6 +13,7 @@ import { DocumentSignComponent } from './document-sign/document-sign.component';
 import { DocumentSignActionComponent } from './document-sign-action/document-sign-action.component';
 import { AuthGuard } from '../guards/auth.guard';
 import { DocumentsVehiculosMotorizadosComponent } from './documents-vehiculos-motorizados/documents-vehiculos-motorizados.component';
+import { DocumentPromesaUploadComponent } from './documents-promesa-upload/documents-promesa-upload.component';
 
 export const routes: Routes = [
     {
@@ -26,6 +27,7 @@ export const routes: Routes = [
           { path:'document-certification-action/:id', component: DocumentCertificationActionComponent },
           { path:'document-upload', component: DocumentUploadComponent },
           { path:'document-poliza-upload', component: DocumentPolizaUploadComponent },
+          { path:'document-promesa-upload', component: DocumentPromesaUploadComponent},
           { path:'document-detail/:id', component: DocumentDetailComponent },
           { path:'document-sign', component: DocumentSignComponent },
           { path:'document-sign-action/:id', component: DocumentSignActionComponent },

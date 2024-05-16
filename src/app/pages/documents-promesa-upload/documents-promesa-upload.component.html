@@ -1,0 +1,381 @@
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg bg-white p-4 m-4 pl-4">
+    <nav class="flex mb-4" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-[#466D94] cursor-pointer   dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+            </svg>
+            Cargar Promesa
+          </a>
+        </li>
+        
+      </ol>
+    </nav>
+    <h2 class="mb-4 text-3xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl dark:text-white">Cargar Nuevo Documento Promesa</h2>
+  <div class="lg:flex h-screen overflow-y-auto">
+    <!-- Parte Izquierda - Datos de Documento -->
+    <div class="lg:w-1/2 bg-white border-r border-gray-200 p-5 items-center ">
+    
+
+<ol class="flex items-center w-full mb-4 sm:mb-5">
+  <li class="flex w-full items-center text-blue-600 dark:text-blue-500 after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-800"  
+  [ngClass]="{
+    'after:border-[#36494E]': step !== 1,
+    'after:border-gray-100': step === 1
+  }">
+    <div class="flex items-center justify-center w-10 h-10 bg-[#36494E] rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
+          <svg class="w-4 h-4 text-blue-600 lg:w-6 lg:h-6 dark:text-blue-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 20 16" >
+              <path d="M18 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2ZM6.5 3a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3.014 13.021l.157-.625A3.427 3.427 0 0 1 6.5 9.571a3.426 3.426 0 0 1 3.322 2.805l.159.622-6.967.023ZM16 12h-3a1 1 0 0 1 0-2h3a1 1 0 0 1 0 2Zm0-3h-3a1 1 0 1 1 0-2h3a1 1 0 1 1 0 2Zm0-3h-3a1 1 0 1 1 0-2h3a1 1 0 1 1 0 2Z"/>
+          </svg>
+      </div>
+  </li>
+  <li class="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700" 
+  [ngClass]="{
+    'after:border-[#36494E]': step >= 1,
+    'after:border-gray-100': step === 2
+  }">
+    <div class="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0" 
+    [ngClass]="{
+      'bg-[#36494E]': step == 2,
+      'bg-gray-100': step != 2,
+      'after:border-[#36494E]': step === 2,
+    }">
+          <svg class="w-4 h-4 text-blue-600 lg:w-6 lg:h-6 dark:text-blue-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 20 14">
+              <path d="M18 0H2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2ZM2 12V6h16v6H2Z"/>
+              <path d="M6 8H4a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2Zm8 0H9a1 1 0 0 0 0 2h5a1 1 0 1 0 0-2Z"/>
+          </svg>
+      </div>
+  </li>
+  <li class="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700" 
+  [ngClass]="{
+    'after:border-[#36494E]': step == 3,
+    'after:border-gray-100': step === 2
+  }">
+    <div class="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0" 
+    [ngClass]="{
+      'bg-[#36494E]': step == 2,
+      'bg-gray-100': step != 2,
+      'after:border-[#36494E]': step === 2,
+    }">
+          <svg class="w-4 h-4 text-blue-600 lg:w-6 lg:h-6 dark:text-blue-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 20 14">
+              <path d="M18 0H2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2ZM2 12V6h16v6H2Z"/>
+              <path d="M6 8H4a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2Zm8 0H9a1 1 0 0 0 0 2h5a1 1 0 1 0 0-2Z"/>
+          </svg>
+      </div>
+  </li>
+  <li class="flex items-center w-full"  >
+      <div class="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0"
+      [ngClass]="{
+        'bg-[#36494E]': step === 4,
+        'bg-gray-100': step != 2,
+      }">
+          <svg class="w-4 h-4 text-blue-600 lg:w-6 lg:h-6 dark:text-blue-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 18 20">
+              <path d="M16 1h-3.278A1.992 1.992 0 0 0 11 0H7a1.993 1.993 0 0 0-1.722 1H2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2ZM7 2h4v3H7V2Zm5.7 8.289-3.975 3.857a1 1 0 0 1-1.393 0L5.3 12.182a1.002 1.002 0 1 1 1.4-1.436l1.328 1.289 3.28-3.181a1 1 0 1 1 1.392 1.435Z"/>
+          </svg>
+      </div>
+  </li>
+</ol>
+<form *ngIf="step === 1" (ngSubmit)="nextStep()">
+  <h3 class="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-white">Datos del vendedor</h3>
+  <div class="grid gap-4 mb-4 sm:grid-cols-2">
+    <div>
+      <label for="vendedorEsComunidad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vendedor es comunidad</label>
+      <input type="number" name="vendedorEsComunidad" id="vendedorEsComunidad" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="rutVendedor1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">RUT del Vendedor</label>
+      <input type="text" name="rutVendedor1" id="rutVendedor1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="apellidoPaternoRazonVendedor1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apellido Paterno o Razón Social del Vendedor</label>
+      <input type="text" name="apellidoPaternoRazonVendedor1" id="apellidoPaternoRazonVendedor1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="apellidoMaternoVendedor1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apellido Materno del Vendedor</label>
+      <input type="text" name="apellidoMaternoVendedor1" id="apellidoMaternoVendedor1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="nombresVendedor1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombres del Vendedor</label>
+      <input type="text" name="nombresVendedor1" id="nombresVendedor1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="idTipoVendedor1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID del Tipo de Vendedor</label>
+      <input type="number" name="idTipoVendedor1" id="idTipoVendedor1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="calleDomicilioVendedor1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Calle del Domicilio del Vendedor</label>
+      <input type="text" name="calleDomicilioVendedor1" id="calleDomicilioVendedor1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="numeroDomicilioVendedor1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Número del Domicilio del Vendedor</label>
+      <input type="text" name="numeroDomicilioVendedor1" id="numeroDomicilioVendedor1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="infoAddDomicilioVendedor1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Información Adicional del Domicilio del Vendedor</label>
+      <input type="text" name="infoAddDomicilioVendedor1" id="infoAddDomicilioVendedor1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="idComunaVendedor1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID de la Comuna del Vendedor</label>
+      <input type="number" name="idComunaVendedor1" id="idComunaVendedor1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="celularVendedor1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Celular del Vendedor</label>
+      <input type="text" name="celularVendedor1" id="celularVendedor1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="mailVendedor1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email del Vendedor</label>
+      <input type="email" name="mailVendedor1" id="mailVendedor1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="">
+    </div>
+  </div>
+  <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+      Next Step: Payment Info
+  </button>
+</form>
+<form *ngIf="step === 2" (ngSubmit)="nextStep()">
+  <h3 class="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-white">Datos Comprador</h3>
+  <div class="grid gap-4 mb-4 sm:grid-cols-2">
+    <div>
+      <label for="rutComprador" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">RUT del Comprador</label>
+      <input type="text" name="rutComprador" id="rutComprador" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="apellidoPaternoRazonComprador" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apellido Paterno o Razón Social del Comprador</label>
+      <input type="text" name="apellidoPaternoRazonComprador" id="apellidoPaternoRazonComprador" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="apellidoMaternoComprador" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apellido Materno del Comprador</label>
+      <input type="text" name="apellidoMaternoComprador" id="apellidoMaternoComprador" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="nombresComprador" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombres del Comprador</label>
+      <input type="text" name="nombresComprador" id="nombresComprador" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="idTipoComprador" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID del Tipo de Comprador</label>
+      <input type="number" name="idTipoComprador" id="idTipoComprador" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="calleDomicilioComprador" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Calle del Domicilio del Comprador</label>
+      <input type="text" name="calleDomicilioComprador" id="calleDomicilioComprador" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="numeroDomicilioComprador" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Número del Domicilio del Comprador</label>
+      <input type="text" name="numeroDomicilioComprador" id="numeroDomicilioComprador" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="infoAddDomicilioComprador" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Información Adicional del Domicilio del Comprador</label>
+      <input type="text" name="infoAddDomicilioComprador" id="infoAddDomicilioComprador" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="idComunaComprador" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID de la Comuna del Comprador</label>
+      <input type="number" name="idComunaComprador" id="idComunaComprador" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="celularComprador" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Celular del Comprador</label>
+      <input type="text" name="celularComprador" id="celularComprador" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="mailComprador" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email del Comprador</label>
+      <input type="email" name="mailComprador" id="mailComprador" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="">
+    </div>
+    <div>
+      <label for="CompradorEsComunidad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Comprador es comunidad</label>
+      <input type="number" name="CompradorEsComunidad" id="CompradorEsComunidad" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+  </div>
+  <button type="button" (click)="prevStep()" class="text-gray-700 bg-gray-200 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-500">
+    Previous Step
+  </button>
+  <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+      Next Step: Payment Info
+  </button>
+</form>
+<form *ngIf="step === 3" (ngSubmit)="nextStep()">
+  <h3 class="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-white">Datos Contrato</h3>
+  <div class="grid gap-4 mb-4 sm:grid-cols-2">
+    <div>
+      <label for="idNotarioRepertorio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID del Notario del Repertorio</label>
+      <input type="number" name="idNotarioRepertorio" id="idNotarioRepertorio" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="numeroRepertorioVehiculo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Número de Repertorio del Vehículo</label>
+      <input type="number" name="numeroRepertorioVehiculo" id="numeroRepertorioVehiculo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="precioVentaVehiculo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Precio de Venta del Vehículo</label>
+      <input type="number" name="precioVentaVehiculo" id="precioVentaVehiculo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="avaluoFiscalVehiculo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Avalúo Fiscal del Vehículo</label>
+      <input type="number" name="avaluoFiscalVehiculo" id="avaluoFiscalVehiculo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="idTipoDocumento" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID del Tipo de Documento</label>
+      <input type="number" name="idTipoDocumento" id="idTipoDocumento" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="numeroDocumentoSTEV" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Número de Documento STEV</label>
+      <input type="number" name="numeroDocumentoSTEV" id="numeroDocumentoSTEV" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="idLugarSRCEI" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID del Lugar SRCEI</label>
+      <input type="number" name="idLugarSRCEI" id="idLugarSRCEI" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="fechaRepertorio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha de Repertorio</label>
+      <input type="date" name="fechaRepertorio" id="fechaRepertorio" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="fechaDocumento" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha de Documento</label>
+      <input type="date" name="fechaDocumento" id="fechaDocumento" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="impuestoVehiculo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Impuesto del Vehículo</label>
+      <input type="number" name="impuestoVehiculo" id="impuestoVehiculo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="CID" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">CID</label>
+      <input type="text" name="CID" id="CID" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+  </div>
+  <button type="button" (click)="prevStep()" class="text-gray-700 bg-gray-200 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-500">
+    Previous Step
+  </button>
+  <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+      Next Step: Payment Info
+  </button>
+</form>
+<form *ngIf="step === 4" (ngSubmit)="onSubmit()">
+  <h3 class="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-white">Datos Vehículo</h3>
+  <div class="grid gap-4 mb-4 sm:grid-cols-2">
+    <div>
+      <label for="idTipoVehiculo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID del Tipo de Vehículo</label>
+      <input type="number" name="idTipoVehiculo" id="idTipoVehiculo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" maxlength="3" required="">
+    </div>
+    <div>
+      <label for="marcaVehiculo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Marca del Vehículo</label>
+      <input type="text" name="marcaVehiculo" id="marcaVehiculo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" maxlength="50" required="">
+    </div>
+    <div>
+      <label for="anoVehiculo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Año del Vehículo</label>
+      <input type="number" name="anoVehiculo" id="anoVehiculo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" maxlength="4" required="">
+    </div>
+    <div>
+      <label for="modeloVehiculo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Modelo del Vehículo</label>
+      <input type="text" name="modeloVehiculo" id="modeloVehiculo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="colorVehiculo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Color del Vehículo</label>
+      <input type="text" name="colorVehiculo" id="colorVehiculo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="numeroMotorVehiculo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Número de Motor del Vehículo</label>
+      <input type="text" name="numeroMotorVehiculo" id="numeroMotorVehiculo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="numeroChasisVehiculo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Número de Chasis del Vehículo</label>
+      <input type="text" name="numeroChasisVehiculo" id="numeroChasisVehiculo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="numeroSerieVehiculo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Número de Serie del Vehículo</label>
+      <input type="text" name="numeroSerieVehiculo" id="numeroSerieVehiculo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="numeroVinVehiculo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Número VIN del Vehículo</label>
+      <input type="text" name="numeroVinVehiculo" id="numeroVinVehiculo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+    <div>
+      <label for="placaPatenteVehiculo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Placa Patente del Vehículo</label>
+      <input type="text" name="placaPatenteVehiculo" id="placaPatenteVehiculo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="">
+    </div>
+  </div>
+  <button type="button" (click)="prevStep()" class="text-gray-700 bg-gray-200 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-500">
+    Previous Step
+  </button>
+  <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+      Next Step: Payment Info
+  </button>
+</form>
+
+    </div>
+    <!-- Parte Derecha - Visualizador de PDF -->
+    <div class="lg:w-4/6 bg-white p-4 h-screen overflow-y-auto" >
+        <!-- Contenido de la parte derecha, como el visor de PDF... -->
+      <div class="bg-[#36494E] rounded-md items-center p-2"  *ngIf="fileBase64!=''">
+        <h3 class="flex items-center justify-center mb-2 font-semibold text-white dark:text-white">Previsualizador</h3>
+        <app-pdf-viewer [pdfBase64]="fileBase64" *ngIf="fileBase64" ></app-pdf-viewer>
+        <div>
+          <div class="relative">
+            <div role="status" class="max-w-sm mx-auto p-4 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700">
+              <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-32 mb-2.5"></div>
+              <div class="w-48 h-2 mb-10 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+              <div class="flex items-baseline mt-4">
+                <div class="w-full bg-gray-200 rounded-t-lg h-72 dark:bg-gray-700"></div>
+                <div class="w-full h-56 ms-6 bg-gray-200 rounded-t-lg dark:bg-gray-700"></div>
+                <div class="w-full bg-gray-200 rounded-t-lg h-72 ms-6 dark:bg-gray-700"></div>
+                <div class="w-full h-64 ms-6 bg-gray-200 rounded-t-lg dark:bg-gray-700"></div>
+                <div class="w-full bg-gray-200 rounded-t-lg h-80 ms-6 dark:bg-gray-700"></div>
+                <div class="w-full bg-gray-200 rounded-t-lg h-72 ms-6 dark:bg-gray-700"></div>
+                <div class="w-full bg-gray-200 rounded-t-lg h-80 ms-6 dark:bg-gray-700"></div>
+              </div>
+            </div>
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="text-center text-white font-bold text-xl bg-gray-200 p-8 rounded-md ">
+               <img src="assets/img/Logo_notaria.svg" alt="Tu Imagen" >
+                
+              </div>
+            </div>
+          </div>
+          
+  
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  </div>
+  
+  <!-- Modal de carga-->
+  <div *ngIf="showModal==true">
+    <div class="fixed inset-0 bg-black opacity-50 z-40"></div>
+    <div id="popup-modal" tabindex="-1" class="fixed inset-0 flex items-center justify-center z-50 p-4 overflow-x-hidden overflow-y-auto md:inset-0 ">
+        <div class="relative w-full max-w-md max-h-full">
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <div class="p-6 text-center">
+                <div role="status">
+                  <svg *ngIf="success" class="w-[48px] h-[48px] mx-auto my-auto text-green-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" d="M1 5.917 5.724 10.5 15 1.5"/>
+                  </svg>
+                  <svg *ngIf="!success" class="w-[48px] h-[48px] mx-auto my-auto text-red-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                  </svg>
+                </div>
+                    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">{{message}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- State modal-->
+  <div *ngIf="showStatus==true">
+    <div class="fixed inset-0 bg-black opacity-50 z-40"></div>
+    <div id="popup-modal" tabindex="-1" class="fixed inset-0 flex items-center justify-center z-50 p-4 overflow-x-hidden overflow-y-auto md:inset-0 ">
+        <div class="relative w-full max-w-md max-h-full">
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <div class="p-6 text-center">
+                <div role="status">
+                  <svg *ngIf="success===true" class="w-[48px] h-[48px] mx-auto my-auto text-green-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" d="M1 5.917 5.724 10.5 15 1.5"/>
+                  </svg>
+                  <svg *ngIf="success===false" class="w-[48px] h-[48px] mx-auto my-auto text-red-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                  </svg>
+                </div>
+                    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">{{message}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
